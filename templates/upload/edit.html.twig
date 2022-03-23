@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Upload
+{% endblock %}
+
+{% block body %}
+	<div class="card-body">
+		<h3 class="text text-warning text-center">
+			<span class="text text-primary fa fa-edit"></span>Edit
+			{{ upload.uploadName }}
+		</h3>
+		<div class="container">
+			{{ include('upload/_form.html.twig', {'button_label': 'Update'}) }}
+		</div>
+		<div class="form-group">
+			<a class="btn btn-info pull-left" href="{{ path('upload_index') }}">back to list</a>
+
+			<a class="btn btn-warning pull-right" href="{{ path('upload_show', {'id': upload.id}) }}">show</a>
+		</div>
+		<br>
+		<div class="form-group  mt-5">
+			{{ include('upload/_delete_form.html.twig') }}
+		</div>
+
+	</div>
+{% endblock %}

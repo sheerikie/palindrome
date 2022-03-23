@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Palindrome Upload index
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="card-body">
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">UploadName</th>
+					<th scope="col">Upload File</th>
+					<th scope="col">Palindrome</th>
+					<th scope="col">Palindrome Count</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for upload in uploads %}
+					<tr>
+						<td scope="row">{{ upload.id }}</td>
+						<td>{{ upload.uploadName }}</td>
+						<td>
+							<i class="fa fa-file-text-o fa-3x text-success" aria-hidden="true"></i>
+
+							<span>{{ asset('uploads/upload_textfiles/' ~ upload.uploadFile) }}</span>
+						</td>
+						<td>{{upload.palindrome| json_encode() }}</td>
+						<td>{{ upload.palindromeCount }}</td>
+						<td>
+							<div class="row">
+								<div class="col">
+									<a class="btn btn-warning btn-sm" href="{{ path('upload_show', {'id': upload.id}) }}">
+										<span class="fa fa-eye"></span>
+									</a>
+								</div>
+								<div class="col">
+									<a class="btn btn-primary btn-sm" href="{{ path('upload_edit', {'id': upload.id}) }}">
+										<span class="fa fa-edit"></span>
+									</a>
+								</div>
+							</div>
+
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+
+{% endblock %}

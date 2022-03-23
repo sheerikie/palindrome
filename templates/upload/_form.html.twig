@@ -1,0 +1,34 @@
+{{ form_start(form) }}
+	<div class="form-group row">
+		<div class="col-sm-2 col-form-label">
+		   		{{ form_label(form.uploadName) }}
+		</div>
+		<div class="col-sm-4">
+		   {{ form_widget(form.uploadName, {'attr': {'class': 'form-control'}}) }}
+		</div>
+		<div class="my-custom-class-for-errors row">
+			{{ form_errors(form.uploadName) }}
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<div class="col-sm-2 col-form-label">
+		   		{{ form_label(form.uploadFile) }}
+		</div>
+		<div class="col-sm-4">
+		   {{ form_widget(form.uploadFile, {'attr': {'class': 'form-control12'}}) }}
+		</div>
+		<div class="my-custom-class-for-errors row">
+			{{ form_errors(form.uploadFile) }}
+		</div>
+	</div>
+	
+	<div class="form-group row">
+		<div class="col-sm-4">
+		<button class="btn btn-primary mb-2">{{ button_label|default('Save') }}</button>
+	</div>
+	</div>		
+{{ form_end(form) }}
+<style>
+.my-custom-class-for-errors{color:red}
+</style>
