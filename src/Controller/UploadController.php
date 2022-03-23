@@ -70,7 +70,11 @@ class UploadController extends AbstractController
 
                 $upload->setHighlight($highlight);
                 $upload->setPalindrome($palindrome);
-                $count = count(explode(',', $palindrome));
+                $count=0;
+                
+                if (strlen($palindrome)>0) {
+                    $count = count(explode(',', $palindrome));
+                }
              
             
                 $upload->setPalindromeCount($count);
@@ -138,8 +142,13 @@ class UploadController extends AbstractController
 
                 $upload->setHighlight($highlight);
                 $upload->setPalindrome($palindrome);
-                $count = count(explode(',', $palindrome));
-             
+               
+                $count=0;
+                
+                if (strlen($palindrome)>0) {
+                    $count = count(explode(',', $palindrome));
+                }
+            
             
                 $upload->setPalindromeCount($count);
             }
