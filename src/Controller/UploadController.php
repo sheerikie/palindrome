@@ -6,6 +6,7 @@ use App\Entity\Upload;
 use App\Form\UploadType;
 use App\Repository\UploadRepository;
 use App\Service\PalindromeService;
+use App\Service\HighlightService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,7 @@ class UploadController extends AbstractController
     /**
      * @Route("/new", name="upload_new", methods={"GET","POST"})
      */
-    public function new(Request $request, SluggerInterface $slugger, PalindromeService $palindromeService): Response
+    public function new(Request $request, SluggerInterface $slugger, PalindromeService $palindromeService, HighlightService $highlightService): Response
     {
         $upload = new Upload();
         $form = $this->createForm(UploadType::class, $upload);
@@ -64,9 +65,15 @@ class UploadController extends AbstractController
                 $filename = $this->getParameter('kernel.project_dir') . '/public/uploads/upload_textfiles/' . $newFilename;
 
                 $palindrome=$palindromeService->doRequest($filename);
-                $copy = json_decode(json_encode($palindrome), true);
-                $upload->setPalindrome($copy);
-                $upload->setPalindromeCount(count($palindrome));
+         
+                $highlight=$highlightService->highlight($filename, $palindrome);
+
+                $upload->setHighlight($highlight);
+                $upload->setPalindrome($palindrome);
+                $count = count(explode(',', $palindrome));
+             
+            
+                $upload->setPalindromeCount($count);
             }
 
 
@@ -97,7 +104,7 @@ class UploadController extends AbstractController
     /**
      * @Route("/{id}/edit", name="upload_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Upload $upload, SluggerInterface $slugger, PalindromeService $palindromeService): Response
+    public function edit(Request $request, Upload $upload, SluggerInterface $slugger, PalindromeService $palindromeService, HighlightService $highlightService): Response
     {
         $form = $this->createForm(UploadType::class, $upload);
         $form->handleRequest($request);
@@ -121,13 +128,20 @@ class UploadController extends AbstractController
                     // ... handle exception if something happens during file upload
                     throw new FileException(sprintf('Could not get the content of the file "%s".', $this->getPathname()));
                 }
+               
                 $upload->setUploadFile($newFilename);
                 $filename = $this->getParameter('kernel.project_dir') . '/public/uploads/upload_textfiles/' . $newFilename;
 
                 $palindrome=$palindromeService->doRequest($filename);
-                $copy = json_decode(json_encode($palindrome), true);
-                $upload->setPalindrome($copy);
-                $upload->setPalindromeCount(count($palindrome));
+         
+                $highlight=$highlightService->highlight($filename, $palindrome);
+
+                $upload->setHighlight($highlight);
+                $upload->setPalindrome($palindrome);
+                $count = count(explode(',', $palindrome));
+             
+            
+                $upload->setPalindromeCount($count);
             }
             $this->getDoctrine()->getManager()->flush();
 

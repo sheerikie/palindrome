@@ -34,9 +34,15 @@ class Upload
     private $palindromeCount;
 
     /**
-     * @ORM\Column(type="array", length=255,nullable=true)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $palindrome;
+
+
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     */
+    private $highlight;
 
 
 
@@ -98,18 +104,34 @@ class Upload
         return $this;
     }
     /**
-    * @return array
+    * @return string
     */
-    public function getPalindrome(): ?array
+    public function getPalindrome(): ?string
     {
         return $this->palindrome;
     }
     /**
-    * @param array $palindrome
+    * @param string $palindrome
     */
-    public function setPalindrome(?array $palindrome): self
+    public function setPalindrome(?string $palindrome): self
     {
         $this->palindrome= $palindrome;
+
+        return $this;
+    }
+    /**
+    * @return string
+    */
+    public function getHighlight(): ?string
+    {
+        return $this->highlight;
+    }
+    /**
+    * @param string $highlight
+    */
+    public function setHighlight(?string $highlight): self
+    {
+        $this->highlight= $highlight;
 
         return $this;
     }
@@ -123,6 +145,7 @@ class Upload
             'uploadFile' => $this->getUploadFile(),
             'palindromeCount' => $this->getPalindromeCount(),
             'palindrome' => $this->getPalindrome(),
+            'highlight' => $this->getHighlight(),
          
         ];
     }

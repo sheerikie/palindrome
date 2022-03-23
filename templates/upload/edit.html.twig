@@ -11,6 +11,24 @@
 		</h3>
 		<div class="container">
 			{{ include('upload/_form.html.twig', {'button_label': 'Update'}) }}
+			<table class="table table-responsive ">
+				<tbody>
+					<tr>
+						<th>Palindrome</th>
+						<td>{{upload.palindrome| json_encode() }}</td>
+					</tr>
+
+					<tr>
+						<th>Palindrome Count</th>
+						<td>{{ upload.palindromeCount }}</td>
+					</tr>
+
+					<tr>
+						<th>Highlight</th>
+						<td>{{ upload.highlight | raw  }}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div class="form-group">
 			<a class="btn btn-info pull-left" href="{{ path('upload_index') }}">back to list</a>

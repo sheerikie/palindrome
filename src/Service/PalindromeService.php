@@ -22,6 +22,7 @@ class PalindromeService
         $string = strtolower($string);
         //split the string to array
         $word=explode(",", $string);
+        $word=explode(",", $string);
         
         foreach ($word as $val) {
             //remove special characters
@@ -33,9 +34,9 @@ class PalindromeService
                 }
             }
         }
-
-       
-        return $palindromes;
+        $decoded=json_decode(json_encode($palindromes), true);
+        $palindrome=implode(",", $decoded);
+        return $palindrome;
     }
     
     /**
