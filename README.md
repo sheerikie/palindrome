@@ -30,3 +30,9 @@ You can use the text files in the sampleTexts directory
 5.Upload Entity
 6.Doctrine DB
 7.Form & html rendered twig
+
+# others
+
+1.screenshot folder:contains app screenshot
+
+2.sample texts folder:contains palindromes to test
