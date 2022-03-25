@@ -13,7 +13,7 @@ class HighlightService
      * Receives text/words and returns highlighted data
      * @param string $filename string
      * @param string $palindrome string
-     * @return array array $highlight|null
+     * @return string string $highlight|null
      */
     public function highlight($filename, $palindromes)
     {
@@ -25,6 +25,7 @@ class HighlightService
             return $text;
         }
         $re = '~\\b(' . implode('|', $m[0]) . ')\\b~';
+       
         return preg_replace($re, '<i><b>$0</b></i>', $text);
     }
 }

@@ -64,19 +64,14 @@ class UploadController extends AbstractController
                 $upload->setUploadFile($newFilename);
                 $filename = $this->getParameter('kernel.project_dir') . '/public/uploads/upload_textfiles/' . $newFilename;
 
-                $palindrome=$palindromeService->doRequest($filename);
-         
+                $palindromeArr=$palindromeService->doRequest($filename);
+                $palindrome=$palindromeArr[0];
+                $count=$palindromeArr[1];
+
                 $highlight=$highlightService->highlight($filename, $palindrome);
 
                 $upload->setHighlight($highlight);
                 $upload->setPalindrome($palindrome);
-                $count=0;
-                
-                if (strlen($palindrome)>0) {
-                    $count = count(explode(',', $palindrome));
-                }
-             
-            
                 $upload->setPalindromeCount($count);
             }
 
@@ -136,20 +131,17 @@ class UploadController extends AbstractController
                 $upload->setUploadFile($newFilename);
                 $filename = $this->getParameter('kernel.project_dir') . '/public/uploads/upload_textfiles/' . $newFilename;
 
-                $palindrome=$palindromeService->doRequest($filename);
-         
-                $highlight=$highlightService->highlight($filename, $palindrome);
+                $palindromeArr=$palindromeService->doRequest($filename);
+                $palindrome=$palindromeArr[0];
+                $count=$palindromeArr[1];
 
+             
+                $highlight=$highlightService->highlight($filename, $palindrome);
+              
                 $upload->setHighlight($highlight);
                 $upload->setPalindrome($palindrome);
                
-                $count=0;
-                
-                if (strlen($palindrome)>0) {
-                    $count = count(explode(',', $palindrome));
-                }
-            
-            
+
                 $upload->setPalindromeCount($count);
             }
             $this->getDoctrine()->getManager()->flush();
