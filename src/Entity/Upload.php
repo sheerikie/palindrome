@@ -34,13 +34,13 @@ class Upload
     private $palindromeCount;
 
     /**
-     * @ORM\Column(type="string", length=255,nullable=true)
+     * @ORM\Column(type="text",nullable=true)
      */
     private $palindrome;
 
 
     /**
-     * @ORM\Column(type="string", length=255,nullable=true)
+     * @ORM\Column(type="text",nullable=true)
      */
     private $highlight;
 

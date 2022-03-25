@@ -21,8 +21,8 @@ class PalindromeService
         //change case to lower
         $string = strtolower($string);
         //split the string to array
-        $word=explode(",", $string);
-        $word=explode(",", $string);
+        $word=explode(" ", $string);
+    
         
         foreach ($word as $val) {
             //remove special characters
