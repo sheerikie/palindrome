@@ -28,6 +28,12 @@ class UploadController extends AbstractController
     {
         return $this->render('upload/index.html.twig', [
             'uploads' => $uploadRepository->findAll(),
+           'highlightedrow'=> $uploadRepository->createQueryBuilder('s')
+           ->where('s.palindromeCount > 0')
+           ->orderBy('s.id', 'DESC')
+           ->getQuery()
+           ->setMaxResults(1)
+           ->getOneOrNullResult()
         ]);
     }
 

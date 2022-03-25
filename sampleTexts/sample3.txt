@@ -1,1 +1,1 @@
-civic,saippuakivikauppias,need
+civic saippuakivikauppias need

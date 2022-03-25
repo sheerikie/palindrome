@@ -20,7 +20,8 @@
 			</thead>
 			<tbody>
 				{% for upload in uploads %}
-					<tr>
+					{% set color = upload.id== highlightedrow.id ? 'green' : '' %}
+					<tr style="background: {{ color }};">
 						<td scope="row">{{ upload.id }}</td>
 						<td>{{ upload.uploadName }}</td>
 						<td>
