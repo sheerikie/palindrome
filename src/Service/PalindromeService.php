@@ -20,13 +20,11 @@ class PalindromeService
         $string = str_replace(' ', '', $content);
         //change case to lower
         $val = strtolower($string);
-        //split the string to array
       
         //remove special characters
         $subs = preg_replace('/[^A-Za-z0-9\-]/', '', $val);
  
       
-
         $len = strlen($subs);
         $tmps = '';
         $max = 0;
